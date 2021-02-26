@@ -82,6 +82,8 @@ marbles <- c("red", "red", "white", "red", "blue", "blue", "red", "blue")
 Suppose we draw a single marble from our imaginary box, where all the marbles
 are equally likely to be selected. What is the probability the marble is blue? 
 How about white?
+-blue = 3/8
+-white = 1/8
 
 We can simulate this "drawing" with the `sample()` function.
 
@@ -108,6 +110,9 @@ prop.table(counts)
 ```
 
 How close is this value to the "true" probability?
+
+pretty close- 3/8 = 0.375 ~= 0.3778 and
+1/8 = 0.125 ~= 0.1243
 
 **To summarize our process:**
 
