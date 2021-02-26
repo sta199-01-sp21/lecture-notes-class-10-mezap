@@ -130,6 +130,9 @@ compute this theoretically yet, but this is what computers are good at.
 
 Before we do this, what is your guess as to what the probability will be?
 
+-Its the sum of the probabilities of getting both red, both white, both blue.  
+
+
 We'll still use `sample()` to run our simulation many times, but we'll
 use `dplyr` functions to compute the relative frequencies.
 
@@ -169,16 +172,33 @@ Perform a simulation to compute this empirical probability.
 
 Write down your guess to the answer before you calculate it.
 
-```{r simulate_rolls}
 
+-My guess: The latter of the two.
+
+```{r simulate_rolls}
+rolls <- c(1, 2, 3, 4, 5, 6)
+two_rolls_results <- tibble(
+  roll_1 = sample(rolls, size = 10000, replace = TRUE),
+  roll_2 = sample(rolls, size = 10000, replace = TRUE)
+)
+two_rolls_results
 ```
 
 ```{r identify_events}
-
+two_rolls_results <- two_rolls_results %>% 
+  mutate(event1 = sqrt(roll_1) == roll_2,
+         event2 = abs(roll_1-roll_2) == 4)
+two_rolls_results
 ```
 
 ```{r summarize_rolls}
-
+two_rolls_results %>% 
+  count(event1) %>% 
+  mutate(prop1 = n / sum(n))
+  
+two_rolls_results %>%
+  count(event2)%>%
+  mutate(prop2 = n / sum(n))
 ```
 
 ## Additional Resources-please look at before Weds.
